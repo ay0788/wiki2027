@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot des Lauréats - MyWiki</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f9fe;
+            --accent-color: #2c3e50;
+            --text-color: #333;
+            --light-blue: #e5f1ff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9fcff;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .logo {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background-image: url('AI-in-Education-Post-Pandemic.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3a7bc8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .chatbot {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .chatbot h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .chatbot-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+        }
+
+        .chatbot-messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: var(--secondary-color);
+        }
+
+        .chatbot-input {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .chatbot-input button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chatbot-input button:hover {
+            background-color: #3a7bc8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .laureate-profile {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .laureate-profile h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .laureate-profile p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .laureate-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .linkedin-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .linkedin-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background: white;
+                box-shadow: var(--shadow);
+                transition: 0.3s;
+                padding: 1rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .chatbot-input {
+                flex-direction: column;
+            }
+
+            .chatbot-input button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="esi-logo-v.jpg" alt="Logo MyWiki">
+                <span class="logo-text">MyWiki</span>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="Academic.html">Academic</a></li>
+                    <li><a href="laureates.html">Bot des Lauréats</a></li>
+                    <li><a href="activities.html">Activités</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="for.html">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bot des Lauréats</h1>
+                <p>Découvrez les parcours des lauréats de votre filière.</p>
+            </div>
+        </section>
+
+        <section class="chatbot">
+            <h2>Chatbot des Lauréats</h2>
+            <div class="chatbot-container">
+                <div class="chatbot-messages" id="chatbotMessages">
+                    <div class="chatbot-message">
+                        <p><strong>Bot:</strong> Bonjour ! Dans quelle filière étudiez-vous ?</p>
+                    </div>
+                </div>
+                <div class="chatbot-input">
+                    <input type="text" id="userInput" placeholder="Entrez votre filière...">
+                    <button onclick="sendMessage()">Envoyer</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="laureates" id="laureatesSection">
+            <!-- Les profils des lauréats seront affichés ici dynamiquement -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> Phone: +212(0)537.774.904</li>
+                    <li><i class="fas fa-fax"></i> Fax: +212(0)537.770.232</li>
+                    <li><i class="fas fa-envelope"></i> Mail: <a href="mailto:contact@esi.ac.ma">contact@esi.ac.ma</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Address: Avenue Allal El Fassi. Cité Al Irfane B.P: 6204 Rabat-instituts 10 100 Rabat, Morocco</li>
+                    <li><i class="fas fa-map"></i> Map: <a href="https://www.google.com/maps/place/X4JM%2BRV+Rabat" target="_blank">X4JM+RV Rabat</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Site Officiel</h3>
+                <p>Visitez le site officiel de l'ESI pour plus d'informations :</p>
+                <a href="http://www.esi.ac.ma/" target="_blank" class="footer-link">www.esi.ac.ma</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ESI. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Données des lauréats
+        const laureatesData = {
+            "informatique": [
+                {
+                    name: "Khaoula Alaoui Belghiti",
+                    parcours: "Diplômée en 2021 de l'École des Sciences de l'Information (ESI) en Ingénierie des Données. Actuellement doctorante en Vision par Ordinateur au laboratoire LyRiCA de l'ESI, spécialisée en imagerie médicale et maladies neurodégénératives.",
+                    photo: "khaoula-alaoui.jpg",
+                    linkedin: "https://www.linkedin.com/in/khaoula-alaoui-belghiti",
+                    skills: [
+                        "Intelligence Artificielle (IA)",
+                        "Deep Learning",
+                        "Vision par Ordinateur",
+                        "Imagerie Médicale",
+                        "Python",
+                        "TensorFlow",
+                        "Keras",
+                        "Recherche en IA"
+                    ],
+                    certifications: [],
+                    projects: [
+                        {
+                            title: "Détection de Produits Médicaux en Temps Réel",
+                            description: "Développement d'un modèle de vision par ordinateur (YOLOv4) pour la détection en temps réel de produits médicaux, déployé avec Streamlit.",
+                            link: "#"
+                        },
+                        {
+                            title: "Site Web Dynamique pour CLEF Missour",
+                            description: "Conception d'un site web dynamique avec interface administrateur, professeur et étudiant, utilisant Angular 9, HTML, CSS, JS, PHP et MySQL.",
+                            link: "#"
+                        }
+                    ],
+                    experience: [
+                        {
+                            company: "École des Sciences de l'Information (ESI)",
+                            role: "Doctorante en Vision par Ordinateur",
+                            duration: "Déc 2021 - Présent",
+                            description: "Recherche sur l'application de la vision par ordinateur et de l'IA dans le domaine de la santé, en particulier pour les maladies neurodégénératives."
+                        },
+                        {
+                            company: "HDS",
+                            role: "Stagiaire en Vision par Ordinateur",
+                            duration: "Fév 2021 - Juin 2021",
+                            description: "Développement d'un modèle de détection en temps réel de produits médicaux utilisant YOLOv4 et Streamlit."
+                        },
+                        {
+                            company: "CLEF Missour",
+                            role: "Stagiaire en Développement Web",
+                            duration: "Juil 2020 - Sep 2020",
+                            description: "Conception d'un site web dynamique avec gestion des utilisateurs (administrateur, professeur, étudiant) utilisant Angular, PHP et MySQL."
+                        },
+                        {
+                            company: "Conseil des Oulamas Local Boulemane (COLB)",
+                            role: "Stagiaire en Développement Web",
+                            duration: "Juil 2019 - Août 2019",
+                            description: "Développement d'une application web de gestion de stock et d'une bibliothèque numérique utilisant PMB."
+                        }
+                    ],
+                    education: {
+                        school: "École des Sciences de l'Information (ESI)",
+                        degree: "Doctorat en Vision par Ordinateur",
+                        duration: "Nov 2021 - 2025",
+                        skills: ["Imagerie Médicale", "IA", "Deep Learning"]
+                    }
+                }
+            ],
+            "data": [
+                {
+                    name: "Soufiane EL GHAZI",
+                    parcours: "Diplômé en 2024 de l'École des Sciences de l'Information (ESI) en Ingénierie des Connaissances et Science des Données. Actuellement Data Engineer & Power BI Specialist chez ENOVART.",
+                    photo: "soufiane-elghazi.jpg",
+                    linkedin: "https://www.linkedin.com/in/soufiane-elghazi",
+                    skills: [
+                        "Data Engineering",
+                        "Power BI",
+                        "Python",
+                        "SQL",
+                        "Apache Spark",
+                        "Azure",
+                        "ETL/ELT",
+                        "Machine Learning",
+                        "NLP",
+                        "Computer Vision"
+                    ],
+                    certifications: [
+                        "Microsoft Azure Data Fundamentals (DP-900)",
+                        "Microsoft Azure Fundamentals (AZ-900)"
+                    ],
+                    projects: [
+                        {
+                            title: "Flutter Voice Assistant with ChatGPT & Dall-E",
+                            description: "Développement d'une application mobile avec assistant vocal intégré, utilisant ChatGPT pour le traitement du langage naturel et Dall-E pour la génération d'images.",
+                            link: "https://lnkd.in/ervEtAiN"
+                        },
+                        {
+                            title: "Data Streaming Pipeline with Kafka & PySpark",
+                            description: "Conception d'un pipeline de streaming de données en temps réel utilisant Apache Kafka, PySpark MLlib, Snowflake et Power BI.",
+                            link: "https://lnkd.in/dYnqR6fx"
+                        },
+                        {
+                            title: "News Summarizer",
+                            description: "Outil de résumé automatique d'articles de presse utilisant un modèle BART fine-tuné, avec un frontend en JavaScript et un backend en Flask.",
+                            link: "https://lnkd.in/dQt5w6VR"
+                        }
+                    ],
+                    experience: [
+                        {
+                            company: "ENOVART",
+                            role: "Data Consultant",
+                            duration: "Sep 2024 - Présent",
+                            description: "Conception de dashboards Power BI, automatisation de pipelines de données avec Talend et Python, et proposition de modèles prédictifs pour réduire les réadmissions hospitalières."
+                        },
+                        {
+                            company: "ENOVART",
+                            role: "Data Scientist Intern",
+                            duration: "Feb 2024 - Aug 2024",
+                            description: "Travail sur la détection des infections nosocomiales via des modèles XGBOOST, GBM et ANN, et automatisation des pipelines ETL."
+                        },
+                        {
+                            company: "Fiverr",
+                            role: "Mobile Developer - Computer Vision",
+                            duration: "Jan 2024 - Sep 2024",
+                            description: "Développement d'une fonctionnalité de vérification d'identité utilisant YOLO pour la détection de cartes d'identité et OpenCV pour le traitement d'images."
+                        }
+                    ],
+                    education: {
+                        school: "École des Sciences de l'Information (ESI)",
+                        degree: "Ingénierie des Connaissances et Science des Données",
+                        duration: "2021 - 2024",
+                        grade: "Très bien",
+                        activities: ["Basketball", "Échecs", "Football"]
+                    }
+                }
+            ],
+            "IIN": [
+                {
+                    name: "EL MOUDEN KHADIJA",
+                    parcours: "Conseillère en Business Intelligence | Passionnée par l'analyse des données | Ms BI & Power BI. Diplômée de l'École des Sciences de l'Information (ESI) en Ingénierie des Données.",
+                    photo: "khadija-el-mouden.jpg",
+                    linkedin: "https://www.linkedin.com/in/el-mouden-khadija",
+                    skills: [
+                        "Business Intelligence",
+                        "Power BI",
+                        "Data Analysis",
+                        "SQL",
+                        "Python",
+                        "Data Visualization",
+                        "ETL",
+                        "Machine Learning"
+                    ],
+                    certifications: [
+                        "Microsoft Power BI Certification",
+                        "Google Data Analytics Professional Certificate"
+                    ],
+                    projects: [
+                        {
+                            title: "Dashboard de Suivi des Ventes",
+                            description: "Conception d'un tableau de bord interactif pour le suivi des ventes en temps réel, utilisant Power BI et SQL Server.",
+                            link: "#"
+                        },
+                        {
+                            title: "Automatisation des Rapports Mensuels",
+                            description: "Développement d'un pipeline ETL pour automatiser la génération de rapports mensuels à partir de données brutes.",
+                            link: "#"
+                        }
+                    ],
+                    experience: [
+                        {
+                            company: "Confidential",
+                            role: "Senior Data Analyst",
+                            duration: "May 2024 - Present",
+                            description: "Analyse de données complexes pour fournir des insights stratégiques aux décideurs."
+                        },
+                        {
+                            company: "Confidential",
+                            role: "Senior Data Analyst",
+                            duration: "Feb 2023 - Apr 2024",
+                            description: "Gestion de projets d'analyse de données et développement de solutions BI pour améliorer la prise de décision."
+                        },
+                        {
+                            company: "DataStory",
+                            role: "Consultante BI",
+                            duration: "Aug 2022 - Jan 2023",
+                            description: "Conception et mise en œuvre de solutions BI pour des clients variés."
+                        },
+                        {
+                            company: "Atos",
+                            role: "Consultant BI",
+                            duration: "Jul 2018 - Jul 2022",
+                            description: "Développement de solutions BI et formation des utilisateurs finaux."
+                        }
+                    ],
+                    education: {
+                        school: "École des Sciences de l'Information (ESI)",
+                        degree: "Ingénierie des Données",
+                        duration: "Sep 2013 - Jul 2016",
+                        skills: ["Data Analysis", "BI", "Data Visualization"]
+                    }
+                },
+                {
+                    name: "Amine SENNOUNI",
+                    parcours: "Professeur universitaire-Maître de Conférences | Information & Data Analyst | Consultant en IT & Digital Transformation. Docteur en Sciences de l'Information et de la Data.",
+                    photo: "amine-sennouni.jpg",
+                    linkedin: "https://www.linkedin.com/in/amine-sennouni",
+                    skills: [
+                        "Data Science",
+                        "Big Data",
+                        "Machine Learning",
+                        "Python",
+                        "TensorFlow",
+                        "Data Analysis",
+                        "Digital Transformation",
+                        "IT Consulting"
+                    ],
+                    certifications: [
+                        "Google Cloud TensorFlow Certification",
+                        "Machine Learning Certification (CentraleSupélec)"
+                    ],
+                    projects: [
+                        {
+                            title: "Système de Recommandation Big Data",
+                            description: "Développement d'un système de recommandation basé sur l'analyse de grandes données pour un client du secteur e-commerce.",
+                            link: "#"
+                        },
+                        {
+                            title: "Dashboard de Gestion des Ressources Humaines",
+                            description: "Conception d'un tableau de bord pour la gestion des ressources humaines, utilisant Python et Power BI.",
+                            link: "#"
+                        }
+                    ],
+                    experience: [
+                        {
+                            company: "École des Sciences de l'Information (ESI)",
+                            role: "Professeur Universitaire-Chercheur",
+                            duration: "Sep 2023 - Present",
+                            description: "Enseignement et recherche en sciences de l'information et de la data."
+                        },
+                        {
+                            company: "Haut Commissariat au Plan",
+                            role: "Chef du service HCP-ESI",
+                            duration: "Jan 2014 - Sep 2023",
+                            description: "Gestion des projets de data science et d'analyse de données pour le gouvernement."
+                        },
+                        {
+                            company: "Caisse Nationale de Sécurité Sociale (CNSS)",
+                            role: "Chargé du Service de la communication interne",
+                            duration: "Oct 2013 - Dec 2013",
+                            description: "Gestion de la communication interne et des projets IT."
+                        }
+                    ],
+                    education: {
+                        school: "HESAM Université (CNAM Paris)",
+                        degree: "Doctorat en Sciences de l'Information et de la Data",
+                        duration: "2015 - 2021",
+                        skills: ["Big Data", "Machine Learning", "Data Science"]
+                    }
+                }
+            ]
+        };
+
+        // Fonction pour envoyer un message
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim().toLowerCase();
+            const chatbotMessages = document.getElementById("chatbotMessages");
+            const laureatesSection = document.getElementById("laureatesSection");
+
+            if (userInput === "") return;
+
+            // Ajouter le message de l'utilisateur
+            chatbotMessages.innerHTML += `
+                <div class="chatbot-message">
+                    <p><strong>Vous:</strong> ${userInput}</p>
+                </div>
+            `;
+
+            // Vérifier si la filière existe dans les données
+            if (laureatesData[userInput]) {
+                const laureates = laureatesData[userInput];
+                chatbotMessages.innerHTML += `
+                    <div class="chatbot-message">
+                        <p><strong>Bot:</strong> Voici les profils des lauréats en ${userInput} :</p>
+                    </div>
+                `;
+
+                // Afficher les profils des lauréats
+                laureatesSection.innerHTML = "";
+                laureates.forEach(laureate => {
+                    laureatesSection.innerHTML += `
+                        <div class="laureate-profile">
+                            <h3>${laureate.name}</h3>
+                            ${laureate.photo ? `<img src="${laureate.photo}" alt="${laureate.name}" class="laureate-photo">` : ''}
+                            <p>${laureate.parcours}</p>
+                            ${laureate.linkedin ? `<a href="${laureate.linkedin}" target="_blank" class="linkedin-link">Profil LinkedIn</a>` : ''}
+                        </div>
+                    `;
+                });
+            } else {
+                chatbotMessages.innerHTML += `
+                    <div class="chatbot-message">
+                        <p><strong>Bot:</strong> Désolé, je n'ai pas d'informations sur cette filière.</p>
+                    </div>
+                `;
+            }
+
+            // Effacer l'entrée de l'utilisateur
+            document.getElementById("userInput").value = "";
+
+            // Faire défiler vers le bas
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>

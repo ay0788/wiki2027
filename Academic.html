@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Académique - MyWiki</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="C:\Users\sdour\Desktop\mywiki\esi-logo-v.jpg" alt="">
+                <span class="logo-text">MyWiki</span>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="Academic.html" class="active">Académique</a></li>
+                    <li><a href="laureates.html">Bot des Lauréats</a></li>
+                    <li><a href="activities.html">Activités</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="for.html">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Cours Académiques</h1>
+            <p>Explorez les cours selon votre filière, semestre et module.</p>
+            <a href="#courses" class="btn">Explorer les Cours</a>
+        </div>
+    </section>
+
+    <main class="courses" id="courses">
+        <!-- ISSIC -->
+        <div class="course-category">
+            <h2>Filière ISSIC</h2>
+            <div class="course-card">
+                <div class="card">
+                    <h3>Semestre 1</h3>
+                    <p>Modules principaux pour commencer votre voyage en ISSIC.</p>
+                    <a href="https://drive.google.com/drive/folders/1qFXZPEVXIKbER_0aRXz8v_bsrr2UZqQ-">Voir les cours</a>
+                </div>
+                <div class="card">
+                    <h3>Semestre 2</h3>
+                    <p>Modules avancés pour approfondir vos connaissances en ISSIC.</p>
+                    <a href="https://drive.google.com/drive/folders/15gn__tOlxPRHbLdLVU-jS5B7yxw0SS7F">Voir les cours</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ICSD -->
+        <div class="course-category">
+            <h2>Filière ICSD</h2>
+            <div class="course-card">
+                <div class="card">
+                    <h3>Semestre 1</h3>
+                    <p>Découverte de l'informatique et de la programmation web.</p>
+                    <a href="https://drive.google.com/drive/folders/1s6WzmSmZupyTijVJXxNJ2evNexHmldBE">Voir les cours</a>
+                </div>
+                <div class="card">
+                    <h3>Semestre 2</h3>
+                    <p>Approfondissement sur la gestion de projet et la sécurité informatique.</p>
+                    <a href="https://drive.google.com/drive/folders/1TkcKIJuG4mnC7v-Xj2XSHLtfABXpEs6j">Voir les cours</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- IIN -->
+        <div class="course-category">
+            <h2>Filière IIN</h2>
+            <div class="course-card">
+                <div class="card">
+                    <h3>Semestre 1</h3>
+                    <p>Introduction à l'informatique industrielle et à l'automatisation.</p>
+                    <a href="https://drive.google.com/drive/folders/1Z6rM5CBs_etFk5b3AyancgFVt_x0r0oN">Voir les cours</a>
+                </div>
+                <div class="card">
+                    <h3>Semestre 2</h3>
+                    <p>Systèmes embarqués et intelligence artificielle.</p>
+                    <a href="https://drive.google.com/drive/folders/16-Ac1yx-KBajKMeBfNjzgofdfQge3hM6">Voir les cours</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESITD -->
+        <div class="course-category">
+            <h2>Filière ISITD</h2>
+            <div class="course-card">
+                <div class="card">
+                    <h3>Semestre 1</h3>
+                    <p>Introduction au développement logiciel et aux bases de données.</p>
+                    <a href="https://drive.google.com/drive/folders/1Z6rM5CBs_etFk5b3AyancgFVt_x0r0oN">Voir les cours</a>
+                </div>
+                <div class="card">
+                    <h3>Semestre 2</h3>
+                    <p>Cloud computing et Data science.</p>
+                    <a href="https://drive.google.com/drive/folders/16-Ac1yx-KBajKMeBfNjzgofdfQge3hM6">Voir les cours</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyWiki. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Navigation mobile
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <ul>
+                <li><i class="fas fa-phone"></i> Phone: +212(0)537.774.904</li>
+                <li><i class="fas fa-fax"></i> Fax: +212(0)537.770.232</li>
+                <li><i class="fas fa-envelope"></i> Mail: <a href="mailto:contact@esi.ac.ma">contact@esi.ac.ma</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Address: Avenue Allal El Fassi. Cité Al Irfane B.P: 6204 Rabat-instituts 10 100 Rabat, Morocco</li>
+                <li><i class="fas fa-map"></i> Map: <a href="https://www.google.com/maps/place/X4JM%2BRV+Rabat" target="_blank">X4JM+RV Rabat</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Site Officiel</h3>
+            <p>Visitez le site officiel de l'ESI pour plus d'informations :</p>
+            <a href="http://www.esi.ac.ma/" target="_blank" class="footer-link">www.esi.ac.ma</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 ESI. Tous droits réservés.</p>
+    </div>
+</footer>
+</html>

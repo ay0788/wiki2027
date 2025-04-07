@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubs - MyWiki</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="C:\Users\sdour\Desktop\mywiki\esi-logo-v.jpg" alt="">
+                <span class="logo-text">MyWiki</span>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="academic.html">Académique</a></li>
+                    <li><a href="laureates.html">Bot des Lauréats</a></li>
+                    <li><a href="activities.html">Activités</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="for.html">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Clubs</h1>
+            <p>Découvrez les clubs étudiants de l'ESI et rejoignez la communauté !</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="clubs">
+            <div class="section-title">
+                <h2>Nos Clubs</h2>
+                <p>Rejoignez des clubs passionnants et développez vos compétences.</p>
+            </div>
+            <div class="clubs-grid">
+                <!-- Club 1 : CODE-ESI -->
+                <div class="club-card">
+                    <div class="club-image">
+                        <img src="C:\Users\sdour\Desktop\mywiki\code.png" alt="CODE-ESI Club">
+                    </div>
+                    <div class="club-content">
+                        <h3>CODE-ESI</h3>
+                        <p class="club-description">Club Of Data Engineers @ ESI. Plus qu'un club !</p>
+                        <p class="club-email">📥 <a href="mailto:code@esi.ac.ma">code@esi.ac.ma</a></p>
+                        <div class="club-social">
+                            <a href="https://www.instagram.com/code.esi/?hl=fr" target="_blank">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Club 2 : JCMP ESI -->
+                <div class="club-card">
+                    <div class="club-image">
+                        <img src="C:\Users\sdour\Desktop\mywiki\jcmp.png" alt="JCMP ESI Club">
+                    </div>
+                    <div class="club-content">
+                        <h3>JCMP ESI</h3>
+                        <p class="club-description">TOGETHER WE GIVE, TOGETHER WE GROW 💙🧡</p>
+                        <p class="club-location">📍 École des sciences de l'information</p>
+                        <div class="club-social">
+                            <a href="https://www.instagram.com/jcmp.esi/?hl=fr" target="_blank">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Club 3 : JLM ESI RABAT -->
+                <div class="club-card">
+                    <div class="club-image">
+                        <img src="C:\Users\sdour\Desktop\mywiki\jlm.png" alt="JLM ESI RABAT Club">
+                    </div>
+                    <div class="club-content">
+                        <h3>JLM ESI RABAT</h3>
+                        <p class="club-description">🏢 ESI RABAT</p>
+                        <p class="club-email">✉️ <a href="mailto:jlm.esi@esi.ac.ma">jlm.esi@esi.ac.ma</a></p>
+                        <div class="club-social">
+                            <a href="https://www.instagram.com/jlm_esi/?hl=fr" target="_blank">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> Phone: +212(0)537.774.904</li>
+                    <li><i class="fas fa-fax"></i> Fax: +212(0)537.770.232</li>
+                    <li><i class="fas fa-envelope"></i> Mail: <a href="mailto:contact@esi.ac.ma">contact@esi.ac.ma</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Address: Avenue Allal El Fassi. Cité Al Irfane B.P: 6204 Rabat-instituts 10 100 Rabat, Morocco</li>
+                    <li><i class="fas fa-map"></i> Map: <a href="https://www.google.com/maps/place/X4JM%2BRV+Rabat" target="_blank">X4JM+RV Rabat</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Site Officiel</h3>
+                <p>Visitez le site officiel de l'ESI pour plus d'informations :</p>
+                <a href="http://www.esi.ac.ma/" target="_blank" class="footer-link">www.esi.ac.ma</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ESI. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation mobile
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
