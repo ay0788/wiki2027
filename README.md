@@ -1,6 +1,6 @@
 # MyWiki 2027 - Plateforme Collaborative
 
-![MyWiki 2027 Logo]([https://github.com/ay0788/wiki2027/blob/main/logo.png])
+![MyWiki 2027 Logo](https://github.com/ay0788/wiki2027/blob/main/logo.png)
 
 ## 📚 À propos
 
